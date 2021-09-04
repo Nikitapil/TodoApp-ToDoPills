@@ -22,9 +22,8 @@
         </div>
         <nav class="header_nav">
             <ul class="header_nav_list">
-                <li class="header_nav_list_item">О проекте</li>
-                <li class="header_nav_list_item">Инструкция</li>
-                <li class="header_nav_list_item">Полезные ссылки</li>
+                <li class="header_nav_list_item about__btn">О проекте</li>
+                <li class="header_nav_list_item instruction__btn">Инструкция</li>
             </ul>
         </nav>
     </header>
@@ -33,12 +32,10 @@
         <div class="todo__container">
             <div class="todo__block todo__main">
                 <div class="todo__header">
-                    <h3>Не выполненные</h3>
+                    <h3>Невыполненные</h3>
                     <p class="todo__counter">1</p> <button type="button" class="todo__clear"></button>
                 </div>
-                <div class="todo__content todo__main__content">
-                    <!-- <div class="todo__item">                            <h4 class="todo__item__header">Test</h4>                            <div class="todo__item__buttons">                                <button class="inprogress__button" title="В процессе"></button>                                <button class="delete__button" title="Удалить"></button>                                <button class="inmain__button" title="В невыполненные"></button>                                <button class="indone__button" title="В выполненные"></button>                            </div>                            <p class="todo__item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, aspernatur iste praesentium quae laudantium soluta repellendus tenetur. Quidem nemo ipsa, quas nam voluptatum impedit nobis facere accusamus fugit at dolores?</p>                            <p class="todo__item__date">04.09.2021</p>                            <button class="item__show"><span>Показать</span></button>                        </div> -->
-                </div>
+                <div class="todo__content todo__main__content"> </div>
             </div>
             <div class="todo__block todo__inprogress">
                 <div class="todo__header">
@@ -76,6 +73,16 @@
         <div class="modal__delete hidden">
             <h2>Удалить задачу безвозвратно?</h2>
             <div class="modal__delete__buttons"> <button type="button" class="modal__delete__deletebtn">Удалить</button> <button type="button" class="modal__delete__cancelbtn">Отмена</button> </div>
+        </div>
+        <div class="modal__about hidden"> <button class="modal__about__closeBtn">&#10008;</button>
+            <h2>О проекте</h2>
+            <p>Данное приложение является простым менеджером задач. У вас есть возможность добавлять текущие задачи, редактировать их, перемещать между блока состояния.</p>
+        </div>
+        <div class="modal__instruction hidden"> <button class="modal__instruction__closeBtn">&#10008;</button>
+            <h2>Инструкция</h2>
+            <p>На данный момент это приложение работает в рамках использования одно браузера. Приложение использует локальное хранилище пользователя.<br> Для добавления новой задачи необходимо нажать кнопку добавить и ввести название задачи и ее описание. <br> Задача автоматически попадет в блок «Невыполненные».<br>Для отображения полного описания задачи необходимо нажать кнопку «Показать». В этом же разделе можно отредактировать задачу, нажав кнопку «Редактировать». Для перемещения задач между блоками можно просто ее перетащить в нужный блок или использовать кнопки навигации внутри задачи. При удалении задачи она сначала попадает в корзину, оттуда уже можно удалить задачу навсегда. Чтобы безвозвратно очистить блок от всех задач необходимо нажать кнопку Удалить <picture>
+                    <source srcset="img/clearbutton.svg" type="image/webp"><img src="img/clearbutton.svg" alt="кнопка удалить">
+                </picture> в заголовке блока.</p>
         </div>
     </div>
     <footer class="footer">

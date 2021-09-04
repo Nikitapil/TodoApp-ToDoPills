@@ -165,3 +165,15 @@ if (event.target.classList.contains("item__show")) {
     showModal(editModal)
 }
 })
+// блок о проекте
+let aboutBtn = document.querySelector(".about__btn")
+let aboutModal = document.querySelector(".modal__about")
+let aboutCloseBtn = document.querySelector(".modal__about__closeBtn")
+aboutBtn.addEventListener("click", ()=> showModal(aboutModal))
+aboutCloseBtn.addEventListener("click", ()=> showModal(aboutModal))
+// блок инструкция
+let instructionBtn = document.querySelector(".instruction__btn")
+let instructionModal = document.querySelector(".modal__instruction")
+let instructionCloseBtn = document.querySelector(".modal__instruction__closeBtn")
+instructionBtn.addEventListener("click", ()=> showModal(instructionModal))
+instructionCloseBtn.addEventListener("click", ()=> showModal(instructionModal))

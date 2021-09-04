@@ -191,7 +191,7 @@
     justify-content: center;
     align-items: center;
 }
-.modal__add, .modal__edit, .modal__delete {
+.modal__add, .modal__edit, .modal__delete, .modal__about, .modal__instruction {
     max-width: 300px;
     padding: 5px;
     background-color: aquamarine;
@@ -200,6 +200,22 @@
     h2 {
         text-align: center;
     }
+}
+.modal__about, .modal__instruction {
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+.modal__about__closeBtn, .modal__instruction__closeBtn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ff4500;
+    border: 2px solid #ffffff;
 }
 .todo__title__input {
     outline: none;
