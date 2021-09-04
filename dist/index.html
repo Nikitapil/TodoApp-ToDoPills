@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>ToDoPills</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__title">
+            <div class="header__logo">
+                <picture>
+                    <source srcset="img/headerlogo.webp" type="image/webp"><img src="img/headerlogo.png" alt="ToDo Logo">
+                </picture>
+            </div>
+            <h1>ToDoPills</h1>
+        </div>
+        <nav class="header_nav">
+            <ul class="header_nav_list">
+                <li class="header_nav_list_item">О проекте</li>
+                <li class="header_nav_list_item">Инструкция</li>
+                <li class="header_nav_list_item">Полезные ссылки</li>
+            </ul>
+        </nav>
+    </header>
+    <main class="content">
+        <h2 class="content__header">Списки задач</h2> <button class="todo__addBtn">+ Добавить</button>
+        <div class="todo__container">
+            <div class="todo__block todo__main">
+                <div class="todo__header">
+                    <h3>Не выполненные</h3>
+                    <p class="todo__counter">1</p> <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__main__content">
+                    <!-- <div class="todo__item">                            <h4 class="todo__item__header">Test</h4>                            <div class="todo__item__buttons">                                <button class="inprogress__button" title="В процессе"></button>                                <button class="delete__button" title="Удалить"></button>                                <button class="inmain__button" title="В невыполненные"></button>                                <button class="indone__button" title="В выполненные"></button>                            </div>                            <p class="todo__item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, aspernatur iste praesentium quae laudantium soluta repellendus tenetur. Quidem nemo ipsa, quas nam voluptatum impedit nobis facere accusamus fugit at dolores?</p>                            <p class="todo__item__date">04.09.2021</p>                            <button class="item__show"><span>Показать</span></button>                        </div> -->
+                </div>
+            </div>
+            <div class="todo__block todo__inprogress">
+                <div class="todo__header">
+                    <h3>В процессе</h3>
+                    <p class="todo__counter">2</p> <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__inprogress__content"></div>
+            </div>
+            <div class="todo__block todo__done">
+                <div class="todo__header">
+                    <h3>Выполненные</h3>
+                    <p class="todo__counter">3</p> <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__done__content"></div>
+            </div>
+            <div class="todo__block tode__trash">
+                <div class="todo__header">
+                    <h3>Корзина</h3>
+                    <p class="todo__counter">4</p> <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__trash__content"></div>
+            </div>
+        </div>
+    </main>
+    <div class="modal__container hidden">
+        <div class="modal__add hidden">
+            <h2>Добавление задачи</h2> <label for="todo__title">Введите название:</label> <input type="text" name="todo__title" class="todo__title__input" placeholder="Название" id="todo__title"> <label for="todo__comment">Введите описание:</label> <textarea name="todo__comment" cols="30" rows="10" class="todo__comment__input" placeholder="Описание" id="todo__comment"></textarea>
+            <div class="modal__add__buttons"> <button type="button" class="modal__add__addbtn">Добавить</button> <button type="button" class="modal__cancel__addbtn">Отмена</button> </div>
+        </div>
+        <div class="modal__edit hidden">
+            <h2>Заголовок</h2>
+            <p>Текст</p>
+            <div class="modal__edit__buttons"> <button type="button" class="modal__edit__editbtn">Редактировать</button> <button type="button" class="modal__cancel__editbtn">Закрыть</button> </div>
+        </div>
+        <div class="modal__delete hidden">
+            <h2>Удалить задачу безвозвратно?</h2>
+            <div class="modal__delete__buttons"> <button type="button" class="modal__delete__deletebtn">Удалить</button> <button type="button" class="modal__delete__cancelbtn">Отмена</button> </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>ToDoPills&copy;</p>
+        <div class="footer__social"> <a href="https://www.instagram.com/nikitapil" class="footer__instagram"></a> <a href="https://github.com/Nikitapil" class="footer__github"></a> <a href="#" class="footer__linkedin"></a> </div>
+        <p class="footer__year">2021</p>
+    </footer>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

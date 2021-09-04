@@ -1,0 +1,44 @@
+%sociallinks {
+    width: 28px;
+    height: 30px;
+    display: block;
+    margin-right: 10px;
+    &:hover {
+        animation: shake 500ms;
+    }
+}
+
+
+.footer {
+    min-height: 50px;
+    /* background-color: black; */
+    background: linear-gradient(to top right,rgb(87, 83, 83), black);
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.footer__social {
+    display: flex;
+}
+
+.footer__instagram {
+    @extend %sociallinks;
+    background: url(../img/instagramicon.svg) no-repeat;
+    background-size: contain;
+}
+.footer__github {
+    @extend %sociallinks;
+    background: url(../img/github.svg) no-repeat;
+    background-size: contain;
+}
+.footer__linkedin {
+    @extend %sociallinks;
+    background: url(../img/linkedin.svg) no-repeat;
+    background-size: contain;
+}

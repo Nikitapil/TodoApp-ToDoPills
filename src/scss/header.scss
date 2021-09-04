@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    height: 100px;
+    padding: 10px 10px;
+    background-color: black;
+    align-items: center;
+    color: white;
+}
+.header__title {
+    display: flex;
+    align-items: center;
+    font-family: 'Marck Script';
+    font-size: 24px;
+}
+.header__logo {
+    width: 100px;
+    max-height: 100%;
+    img {
+        max-width: 100%;
+        max-height: 80px;
+    }
+}
+.header_nav {
+    margin: auto;
+}
+.header_nav_list {
+    list-style: none;
+    display: flex;
+}
+.header_nav_list_item {
+    margin-right: 20px;
+    font-size: 20px;
+    font-family: 'Orbitron';
+    cursor: pointer;
+    transition: 400ms;
+    &:hover {
+        color: red;
+        transform: translate(0px, -1px);
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+}

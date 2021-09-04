@@ -1,0 +1,18 @@
+@keyframes shake {
+    0%,
+    50%,
+    100% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    10%,
+    20% {
+      -webkit-transform: rotate(-5deg);
+      transform: rotate(-5deg);
+    }
+    30%,
+    40% {
+      -webkit-transform: rotate(5deg);
+      transform: rotate(5deg);
+    }
+  }

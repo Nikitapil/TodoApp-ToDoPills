@@ -1,0 +1,14 @@
+@import "fonts.scss";
+@import "nullstyle.scss";
+@import "header.scss";
+@import "footer.scss";
+@import "main.scss";
+@import "animations.scss";
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+.hidden {
+    display: none;
+}
