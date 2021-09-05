@@ -11,6 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px 0;
 }
 .todo__container {
     width: 95%;
@@ -190,6 +191,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3;
 }
 .modal__add, .modal__edit, .modal__delete, .modal__about, .modal__instruction {
     max-width: 300px;
@@ -201,13 +203,20 @@
         text-align: center;
     }
 }
-.modal__about, .modal__instruction {
+.modal__about, .modal__instruction, .modal__search  {
     background-color: black;
     color: white;
     text-align: center;
     position: relative;
 }
-.modal__about__closeBtn, .modal__instruction__closeBtn {
+.modal__search {
+    min-width: 300px;
+}
+.instructions__trashbin {
+    position: relative;
+    top: 5px;
+}
+.modal__about__closeBtn, .modal__instruction__closeBtn, .modal__search__closeBtn {
     position: absolute;
     top: -15px;
     right: -15px;
@@ -246,4 +255,33 @@
 }
 .todo__done__content .inmain__button, .todo__trash__content .inprogress__button, .todo__done__content .indone__button {
     display: none;
+}
+.todo__searcher {
+    display: flex;
+    gap: 5px;
+    align-self: flex-start;
+    margin-left: 2.5%;
+    font-size: 28px;
+    flex-wrap: wrap;
+}
+.todo__searchInput {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+    background: none;
+    font-size: 28px;
+    &::placeholder {
+        font-style: italic;
+        font-family: fantasy;
+    }
+}
+.todo__searchbutton {
+    border: none;
+    background: url(../img/Searchbutton.svg);
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+.foundelement {
+    animation: changecolor 2s;
 }

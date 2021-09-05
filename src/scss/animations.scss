@@ -16,3 +16,19 @@
       transform: rotate(5deg);
     }
   }
+  @keyframes burgermenu {
+    0% {
+      transform: translateY(-70%) scaleY(0);
+    }
+    100% {
+      transform: translateY(0) scaleY(100%);
+    }
+  }
+  @keyframes changecolor {
+    0% {
+      color: red;
+    }
+    100% {
+      color: white;
+    }
+  }

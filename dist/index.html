@@ -26,8 +26,10 @@
                 <li class="header_nav_list_item instruction__btn">Инструкция</li>
             </ul>
         </nav>
+        <div class="burgermenu"> <span></span> </div>
     </header>
     <main class="content">
+        <div class="todo__searcher"> <input type="text" class="todo__searchInput" id="todo__searchInput" placeholder="Поиск по задачам"> <button type="button" class="todo__searchbutton"></button> <label for="todo__searchInput">Введите название задачи</label> </div>
         <h2 class="content__header">Списки задач</h2> <button class="todo__addBtn">+ Добавить</button>
         <div class="todo__container">
             <div class="todo__block todo__main">
@@ -81,9 +83,10 @@
         <div class="modal__instruction hidden"> <button class="modal__instruction__closeBtn">&#10008;</button>
             <h2>Инструкция</h2>
             <p>На данный момент это приложение работает в рамках использования одно браузера. Приложение использует локальное хранилище пользователя.<br> Для добавления новой задачи необходимо нажать кнопку добавить и ввести название задачи и ее описание. <br> Задача автоматически попадет в блок «Невыполненные».<br>Для отображения полного описания задачи необходимо нажать кнопку «Показать». В этом же разделе можно отредактировать задачу, нажав кнопку «Редактировать». Для перемещения задач между блоками можно просто ее перетащить в нужный блок или использовать кнопки навигации внутри задачи. При удалении задачи она сначала попадает в корзину, оттуда уже можно удалить задачу навсегда. Чтобы безвозвратно очистить блок от всех задач необходимо нажать кнопку Удалить <picture>
-                    <source srcset="img/clearbutton.svg" type="image/webp"><img src="img/clearbutton.svg" alt="кнопка удалить">
+                    <source srcset="img/trashbinwhite.svg" type="image/webp"><img class="instructions__trashbin" src="img/trashbinwhite.svg" alt="кнопка удалить">
                 </picture> в заголовке блока.</p>
         </div>
+        <div class="modal__search hidden"> <button class="modal__search__closeBtn">&#10008;</button> </div>
     </div>
     <footer class="footer">
         <p>ToDoPills&copy;</p>

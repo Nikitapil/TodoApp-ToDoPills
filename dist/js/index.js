@@ -177,3 +177,40 @@ let instructionModal = document.querySelector(".modal__instruction")
 let instructionCloseBtn = document.querySelector(".modal__instruction__closeBtn")
 instructionBtn.addEventListener("click", ()=> showModal(instructionModal))
 instructionCloseBtn.addEventListener("click", ()=> showModal(instructionModal))
+//бургер меню 
+let burgerMenu = document.querySelector(".burgermenu")
+let navMenu = document.querySelector(".header_nav_list")
+let headerNav = document.querySelector(".header_nav")
+burgerMenu.onclick = function () {
+    burgerMenu.classList.toggle("active")
+    navMenu.classList.toggle("burgernav")
+    if (burgerMenu.classList.contains("active")){
+        headerNav.style.display = "block"
+    }
+    else {
+        headerNav.style.display = "none"
+    }
+}
+//поиск по задачам
+let searchBtn = document.querySelector(".todo__searchbutton");
+let searchInput = document.querySelector(".todo__searchInput")
+let searchModal = document.querySelector(".modal__search")
+searchBtn.onclick = function () {
+    let allTasks = document.querySelectorAll(".todo__item");
+    let searchModalStart = searchModal.innerHTML
+    let foundElement= Array.from(allTasks).filter((item)=> item.querySelector(".todo__item__header").textContent == searchInput.value).map((item)=> {
+        let newElement = item.cloneNode(true)
+        newElement.querySelectorAll("button").forEach((button)=> button.remove())
+        return newElement
+    })
+    if (foundElement.length > 0) {
+        showModal(searchModal)
+        searchModal.append(...foundElement)
+    }
+    else alert("Ничего не найдено")
+    let searchCloseBtn = document.querySelector(".modal__search__closeBtn")
+    searchCloseBtn.onclick = function() {
+        searchModal.innerHTML = searchModalStart
+        showModal(searchModal)
+    }
+}
