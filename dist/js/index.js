@@ -198,7 +198,7 @@ let searchModal = document.querySelector(".modal__search")
 searchBtn.onclick = function () {
     let allTasks = document.querySelectorAll(".todo__item");
     let searchModalStart = searchModal.innerHTML
-    let foundElement= Array.from(allTasks).filter((item)=> item.querySelector(".todo__item__header").textContent == searchInput.value).map((item)=> {
+    let foundElement= Array.from(allTasks).filter((item)=> item.querySelector(".todo__item__header").textContent.toLocaleLowerCase() == searchInput.value.toLocaleLowerCase()).map((item)=> {
         let newElement = item.cloneNode(true)
         newElement.querySelectorAll("button").forEach((button)=> button.remove())
         return newElement
