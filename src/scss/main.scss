@@ -66,6 +66,7 @@
     border: none;
     background: url(../img/clearbutton.svg);
     background-size: cover;
+    z-index: 0;
 }
 .todo__content {
     padding: 10px;
@@ -263,6 +264,18 @@
     margin-left: 2.5%;
     font-size: 28px;
     flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+    .todo__searcher {
+        align-self: center;
+        justify-content: center;
+        .todo__searchInput {
+            order: 2;
+            &::placeholder {
+                text-align: center;
+            }
+        }
+    }
 }
 .todo__searchInput {
     outline: none;
