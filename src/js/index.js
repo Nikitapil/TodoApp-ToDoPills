@@ -284,7 +284,12 @@ calcButtons.addEventListener("click", function(e) {
     }
     if (targetEl.closest(".calc__ebtn")) {
         let calcResult = calcOutput.textContent.replace("%", "/100*");
-        calcScreen.value = eval(calcResult);
+        if (calcScreen.value.includes(".")) {
+        calcScreen.value = eval(calcResult).toFixed(5);
+        }
+        else {
+            calcScreen.value = eval(calcResult)
+        }
         calcOutput.textContent = calcScreen.value;
     }
 })
