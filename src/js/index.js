@@ -238,3 +238,53 @@ searchBtn.onclick = function () {
     showModal(searchModal);
   };
 };
+// калькулятор 
+const calcButtons = document.querySelector('.calc__buttons')
+const calcScreen = document.querySelector('.calc__input')
+const calcOutput = document.querySelector('.calc__output')
+const modalCalc = document.querySelector('.modal__calc')
+document.addEventListener("click", function (e) {
+if (e.target.closest('.calc__open')) {
+    showModal(modalCalc)
+}
+if (e.target.closest('.modal__calc__closeBtn')) {
+    showModal(modalCalc)
+}
+})
+calcButtons.addEventListener("click", function(e) {
+    let targetEl = e.target;
+    if (targetEl.closest(".calc__btn")) {
+        calcScreen.value += targetEl.value
+        calcOutput.textContent += targetEl.value
+    }
+    if (targetEl.closest(".calc__delall")) {
+        calcOutput.textContent = calcOutput.textContent.slice(0, -1)
+        calcScreen.value = calcScreen.value.slice(0, -1)
+    }
+    if (targetEl.closest(".calc__del")) {
+        calcScreen.value = ""
+        calcOutput.textContent =""
+    }
+    if (targetEl.closest(".calc__funcbtn")) {
+        const funcBtnArr = Array.from(document.querySelectorAll('.calc__funcbtn')).map((item)=> item.value)
+        let finalSymbol = calcOutput.textContent[calcOutput.textContent.length-1]
+        console.log(funcBtnArr.includes(finalSymbol));
+        if (funcBtnArr.includes(finalSymbol)) {
+            calcOutput.textContent = calcOutput.textContent.slice(0, -1)
+            calcOutput.textContent += targetEl.value
+            calcScreen.value =""
+        }
+        else if (calcOutput.textContent == "") {
+            return
+        }
+        else {
+            calcOutput.textContent += targetEl.value
+            calcScreen.value =""
+        }
+    }
+    if (targetEl.closest(".calc__ebtn")) {
+        let calcResult = calcOutput.textContent.replace("%", "/100*");
+        calcScreen.value = eval(calcResult);
+        calcOutput.textContent = calcScreen.value;
+    }
+})
