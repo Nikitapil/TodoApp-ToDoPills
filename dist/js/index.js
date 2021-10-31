@@ -301,6 +301,7 @@ calcButtons.addEventListener("click", function (e) {
 const notes = document.querySelector(".notes");
 const notesAddBtn = document.querySelector('.notes__creator__newbtn')
 const notesCreator = document.querySelector('.notes__creator__body')
+const modalEditor = document.querySelector('.modal__notes-editor')
 notes.addEventListener("click", function (e) {
   let targetEl = e.target;
   if (targetEl.closest(".notes__creator__newbtn") || targetEl.closest(".creator__cancel-btn")) {
@@ -326,6 +327,24 @@ notes.addEventListener("click", function (e) {
   if (targetEl.closest(".notes__del-btn")) {
     targetEl.closest(".notes__list__item").remove()
     localStorage.setItem("noteList", notesList.innerHTML)
+  }
+  if (targetEl.closest(".notes__list__item") && !targetEl.closest(".notes__del-btn")) {
+    let currentNote = targetEl.closest(".notes__list__item")
+    const notesEditorTitle = document.querySelector('.notes-editor__title')
+    const notesEditorText = document.querySelector('.notes__editor__text')
+    const notesEditorSave = document.querySelector('.notes-editor__savebtn')
+    const notesEditorCancel = document.querySelector('.notes-editor__cancelbtn')
+    notesEditorTitle.value = currentNote.querySelector(".notes__item__title").textContent
+    notesEditorText.value = currentNote.querySelector(".notes__item__text").textContent
+    showModal(modalEditor)
+    notesEditorSave.onclick = function () {
+      currentNote.querySelector(".notes__item__title").textContent = notesEditorTitle.value
+      currentNote.querySelector(".notes__item__text").textContent = notesEditorText.value
+      showModal(modalEditor)
+    }
+    notesEditorCancel.onclick = function () {
+      showModal(modalEditor)
+    }
   }
 });
 function toggleHidden(element) {
