@@ -9,6 +9,11 @@ let todoContainer = document.querySelector(".todo__container");
 if (localStorage.getItem("elements")) {
   todoContainer.innerHTML = localStorage.getItem("elements");
 }
+const notesList = document.querySelector('.notes__list')
+// localStorage.setItem("noteList", notesList.innerHTML)
+if (localStorage.getItem("noteList")) {
+  notesList.innerHTML = localStorage.getItem("noteList");
+}
 // модальное окно для добавления элемента
 let addButton = document.querySelector(".todo__addBtn");
 let addModal = document.querySelector(".modal__add");
@@ -202,7 +207,7 @@ header.addEventListener("click", function (e) {
   ) {
     burgerMenu.classList.toggle("active");
     navMenu.classList.toggle("active");
-    header.classList.toggle("active")
+    header.classList.toggle("active");
     console.log(e.target);
   }
 });
@@ -238,58 +243,91 @@ searchBtn.onclick = function () {
     showModal(searchModal);
   };
 };
-// калькулятор 
-const calcButtons = document.querySelector('.calc__buttons')
-const calcScreen = document.querySelector('.calc__input')
-const calcOutput = document.querySelector('.calc__output')
-const modalCalc = document.querySelector('.modal__calc')
+// калькулятор
+const calcButtons = document.querySelector(".calc__buttons");
+const calcScreen = document.querySelector(".calc__input");
+const calcOutput = document.querySelector(".calc__output");
+const modalCalc = document.querySelector(".modal__calc");
 document.addEventListener("click", function (e) {
-if (e.target.closest('.calc__open')) {
-    showModal(modalCalc)
+  if (e.target.closest(".calc__open")) {
+    showModal(modalCalc);
+  }
+  if (e.target.closest(".modal__calc__closeBtn")) {
+    showModal(modalCalc);
+  }
+});
+calcButtons.addEventListener("click", function (e) {
+  let targetEl = e.target;
+  if (targetEl.closest(".calc__btn")) {
+    calcScreen.value += targetEl.value;
+    calcOutput.textContent += targetEl.value;
+  }
+  if (targetEl.closest(".calc__delall")) {
+    calcOutput.textContent = calcOutput.textContent.slice(0, -1);
+    calcScreen.value = calcScreen.value.slice(0, -1);
+  }
+  if (targetEl.closest(".calc__del")) {
+    calcScreen.value = "";
+    calcOutput.textContent = "";
+  }
+  if (targetEl.closest(".calc__funcbtn")) {
+    const funcBtnArr = Array.from(
+      document.querySelectorAll(".calc__funcbtn")
+    ).map((item) => item.value);
+    let finalSymbol = calcOutput.textContent[calcOutput.textContent.length - 1];
+    console.log(funcBtnArr.includes(finalSymbol));
+    if (funcBtnArr.includes(finalSymbol)) {
+      calcOutput.textContent = calcOutput.textContent.slice(0, -1);
+      calcOutput.textContent += targetEl.value;
+      calcScreen.value = "";
+    } else if (calcOutput.textContent == "") {
+      return;
+    } else {
+      calcOutput.textContent += targetEl.value;
+      calcScreen.value = "";
+    }
+  }
+  if (targetEl.closest(".calc__ebtn")) {
+    let calcResult = calcOutput.textContent.replace("%", "/100*");
+    if (calcScreen.value.includes(".")) {
+      calcScreen.value = eval(calcResult).toFixed(5);
+    } else {
+      calcScreen.value = eval(calcResult);
+    }
+    calcOutput.textContent = calcScreen.value;
+  }
+});
+// заметки
+const notes = document.querySelector(".notes");
+const notesAddBtn = document.querySelector('.notes__creator__newbtn')
+const notesCreator = document.querySelector('.notes__creator__body')
+notes.addEventListener("click", function (e) {
+  let targetEl = e.target;
+  if (targetEl.closest(".notes__creator__newbtn") || targetEl.closest(".creator__cancel-btn")) {
+    toggleHidden(notesAddBtn)
+    toggleHidden(notesCreator)
+  }
+  if (targetEl.closest(".creator__save-btn")) {
+    const notesTitleInput = document.querySelector('.creator__body__title')
+    const notesTextInput = document.querySelector('.creator__body__text')
+    let newNote = document.createElement('li')
+    newNote.classList.add("notes__list__item")
+    newNote.innerHTML = `<h3 class="notes__item__title">${notesTitleInput.value ? notesTitleInput.value: "Заметка"}</h3>
+    <p class="notes__item__text">${notesTextInput.value}</p>
+    <button class="notes__del-btn"></button>
+    `
+    notesList.append(newNote)
+    notesTitleInput.value = ""
+    notesTextInput.value = ""
+    toggleHidden(notesAddBtn)
+    toggleHidden(notesCreator)
+    localStorage.setItem("noteList", notesList.innerHTML)
+  }
+  if (targetEl.closest(".notes__del-btn")) {
+    targetEl.closest(".notes__list__item").remove()
+    localStorage.setItem("noteList", notesList.innerHTML)
+  }
+});
+function toggleHidden(element) {
+element.classList.toggle("hidden")
 }
-if (e.target.closest('.modal__calc__closeBtn')) {
-    showModal(modalCalc)
-}
-})
-calcButtons.addEventListener("click", function(e) {
-    let targetEl = e.target;
-    if (targetEl.closest(".calc__btn")) {
-        calcScreen.value += targetEl.value
-        calcOutput.textContent += targetEl.value
-    }
-    if (targetEl.closest(".calc__delall")) {
-        calcOutput.textContent = calcOutput.textContent.slice(0, -1)
-        calcScreen.value = calcScreen.value.slice(0, -1)
-    }
-    if (targetEl.closest(".calc__del")) {
-        calcScreen.value = ""
-        calcOutput.textContent =""
-    }
-    if (targetEl.closest(".calc__funcbtn")) {
-        const funcBtnArr = Array.from(document.querySelectorAll('.calc__funcbtn')).map((item)=> item.value)
-        let finalSymbol = calcOutput.textContent[calcOutput.textContent.length-1]
-        console.log(funcBtnArr.includes(finalSymbol));
-        if (funcBtnArr.includes(finalSymbol)) {
-            calcOutput.textContent = calcOutput.textContent.slice(0, -1)
-            calcOutput.textContent += targetEl.value
-            calcScreen.value =""
-        }
-        else if (calcOutput.textContent == "") {
-            return
-        }
-        else {
-            calcOutput.textContent += targetEl.value
-            calcScreen.value =""
-        }
-    }
-    if (targetEl.closest(".calc__ebtn")) {
-        let calcResult = calcOutput.textContent.replace("%", "/100*");
-        if (calcScreen.value.includes(".")) {
-        calcScreen.value = eval(calcResult).toFixed(5);
-        }
-        else {
-            calcScreen.value = eval(calcResult)
-        }
-        calcOutput.textContent = calcScreen.value;
-    }
-})

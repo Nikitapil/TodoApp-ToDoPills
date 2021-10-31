@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/style.min.css">
     <title>ToDoPills</title>
 </head>
+
 <body>
     <header class="header">
         <div class="header__title">
@@ -41,7 +43,7 @@
                     <button type="button" class="todo__clear"></button>
                 </div>
                 <div class="todo__content todo__main__content">
-                        
+
                 </div>
             </div>
             <div class="todo__block todo__inprogress">
@@ -69,6 +71,30 @@
                 <div class="todo__content todo__trash__content"></div>
             </div>
         </div>
+        <section class="notes">
+            <h2 class="notes__title">Заметки</h2>
+            <div class="notes__container">
+                <div class="notes__content">
+                    <h3 class="notes__content__title">Список заметок</h3>
+                    <ul class="notes__list"></ul>
+                    <p class="notes__no-notes">Пока нет заметок</p>
+                </div>
+                <div class="notes__creator">
+                    <button class="notes__creator__newbtn">+ Новая заметка</button>
+                    <div class="notes__creator__body hidden">
+                        <label for="creator__body__title">Название:</label>
+                        <input type="text" class="creator__body__title" placeholder="Название заметки"
+                            id="creator__body__title">
+                        <label for="creator__body__text">Текс заметки:</label>
+                        <textarea cols="30" rows="10" class="creator__body__text" id="creator__body__text"></textarea>
+                        <div class="creator__btns">
+                            <button class="creator__save-btn">Сохранить</button>
+                            <button class="creator__cancel-btn">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <div class="modal__container hidden">
         <div class="modal__add hidden">
@@ -76,7 +102,8 @@
             <label for="todo__title">Введите название:</label>
             <input type="text" name="todo__title" class="todo__title__input" placeholder="Название" id="todo__title">
             <label for="todo__comment">Введите описание:</label>
-            <textarea name="todo__comment" cols="30" rows="10" class="todo__comment__input" placeholder="Описание" id="todo__comment"></textarea>
+            <textarea name="todo__comment" cols="30" rows="10" class="todo__comment__input" placeholder="Описание"
+                id="todo__comment"></textarea>
             <div class="modal__add__buttons">
                 <button type="button" class="modal__add__addbtn">Добавить</button>
                 <button type="button" class="modal__cancel__addbtn">Отмена</button>
@@ -100,12 +127,21 @@
         <div class="modal__about hidden">
             <button class="modal__about__closeBtn">&#10008;</button>
             <h2>О проекте</h2>
-            <p>Данное приложение является простым менеджером задач. У вас есть возможность добавлять текущие задачи, редактировать их, перемещать между блока состояния.</p>
+            <p>Данное приложение является простым менеджером задач. У вас есть возможность добавлять текущие задачи,
+                редактировать их, перемещать между блока состояния.</p>
         </div>
         <div class="modal__instruction hidden">
             <button class="modal__instruction__closeBtn">&#10008;</button>
             <h2>Инструкция</h2>
-            <p>На данный момент это приложение работает в рамках использования одно браузера. Приложение использует локальное хранилище пользователя.<br> Для добавления новой задачи необходимо нажать кнопку добавить и ввести название задачи и ее описание. <br> Задача автоматически попадет в блок «Невыполненные».<br>Для отображения полного описания задачи необходимо нажать кнопку «Показать». В этом же разделе можно отредактировать задачу, нажав кнопку «Редактировать». Для перемещения задач между блоками можно просто ее перетащить в нужный блок или использовать кнопки навигации внутри задачи. При удалении задачи она сначала попадает в корзину, оттуда уже можно удалить задачу навсегда. Чтобы безвозвратно очистить блок от всех задач необходимо нажать кнопку Удалить <img class="instructions__trashbin" src="img/trashbinwhite.svg" alt="кнопка удалить"> в заголовке блока.</p>
+            <p>На данный момент это приложение работает в рамках использования одно браузера. Приложение использует
+                локальное хранилище пользователя.<br> Для добавления новой задачи необходимо нажать кнопку добавить и
+                ввести название задачи и ее описание. <br> Задача автоматически попадет в блок «Невыполненные».<br>Для
+                отображения полного описания задачи необходимо нажать кнопку «Показать». В этом же разделе можно
+                отредактировать задачу, нажав кнопку «Редактировать». Для перемещения задач между блоками можно просто
+                ее перетащить в нужный блок или использовать кнопки навигации внутри задачи. При удалении задачи она
+                сначала попадает в корзину, оттуда уже можно удалить задачу навсегда. Чтобы безвозвратно очистить блок
+                от всех задач необходимо нажать кнопку Удалить <img class="instructions__trashbin"
+                    src="img/trashbinwhite.svg" alt="кнопка удалить"> в заголовке блока.</p>
         </div>
         <div class="modal__search hidden">
             <button class="modal__search__closeBtn">&#10008;</button>
@@ -113,28 +149,28 @@
         <div class="modal__calc hidden">
             <button class="modal__calc__closeBtn">&#10008;</button>
             <input type="text" readonly class="calc__input">
-                            <p class="calc__output"></p>
-                            <div class="calc__buttons">
-                                    <button class="calc__btn" value="1" >1</button>
-                                    <button class="calc__btn"  value="2" >2</button>
-                                    <button class="calc__btn" value="3" >3</button>
-                                    <button class="calc__btn" value="4" >4</button>
-                                    <button class="calc__btn" value="5" >5</button>
-                                    <button class="calc__btn" value="6" >6</button>
-                                    <button class="calc__btn" value="7" >7</button>
-                                    <button class="calc__btn" value="8" >8</button>
-                                    <button class="calc__btn" value="9" >9</button>
-                                    <button class="calc__btn" value="0" >0</button>
-                                    <button class="calc__btn" value=".">.</button>
-                                    <button class="calc__funcbtn" value="*" >*</button>
-                                    <button class="calc__funcbtn" value="/" >/</button>
-                                    <button class="calc__funcbtn" value="+" >+</button>
-                                    <button class="calc__funcbtn" value="-" >-</button>
-                                    <button class="calc__funcbtn" value="%">%</button>
-                                    <button class="calc__del">C</button>
-                                    <button class="calc__delall">CE</button>
-                                    <button class="calc__ebtn">=</button>
-                            </div>
+            <p class="calc__output"></p>
+            <div class="calc__buttons">
+                <button class="calc__btn" value="1">1</button>
+                <button class="calc__btn" value="2">2</button>
+                <button class="calc__btn" value="3">3</button>
+                <button class="calc__btn" value="4">4</button>
+                <button class="calc__btn" value="5">5</button>
+                <button class="calc__btn" value="6">6</button>
+                <button class="calc__btn" value="7">7</button>
+                <button class="calc__btn" value="8">8</button>
+                <button class="calc__btn" value="9">9</button>
+                <button class="calc__btn" value="0">0</button>
+                <button class="calc__btn" value=".">.</button>
+                <button class="calc__funcbtn" value="*">*</button>
+                <button class="calc__funcbtn" value="/">/</button>
+                <button class="calc__funcbtn" value="+">+</button>
+                <button class="calc__funcbtn" value="-">-</button>
+                <button class="calc__funcbtn" value="%">%</button>
+                <button class="calc__del">C</button>
+                <button class="calc__delall">CE</button>
+                <button class="calc__ebtn">=</button>
+            </div>
         </div>
     </div>
     <footer class="footer">
@@ -148,4 +184,5 @@
     </footer>
     <script src="js/index.js"></script>
 </body>
+
 </html>
