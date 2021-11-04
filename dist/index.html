@@ -28,13 +28,15 @@
         </nav>
     </header>
     <main class="content">
-        <div class="todo__searcher">
-            <input type="text" class="todo__searchInput" id="todo__searchInput" placeholder="Поиск по задачам">
-            <button type="button" class="todo__searchbutton"></button>
-            <label for="todo__searchInput">Введите название задачи</label>
-        </div>
         <h2 class="content__header">Списки задач</h2>
-        <button class="todo__addBtn">+ Добавить</button>
+        <div class="todo__tools">
+            <button class="todo__addBtn">+ Добавить</button>
+            <div class="todo__searcher">
+                <input type="text" class="todo__searchInput" id="todo__searchInput" placeholder="Поиск по задачам">
+                <button type="button" class="todo__searchbutton"></button>
+                <label for="todo__searchInput">Введите название задачи</label>
+            </div>
+        </div>
         <div class="todo__container">
             <div class="todo__block todo__main">
                 <div class="todo__header">
@@ -94,6 +96,30 @@
                 </div>
             </div>
         </section>
+        <section class="events">
+            <h2 class="events__title">События</h2>
+            <div class="event__container">
+                <div class="events__content">
+                    <h3 class="events__content__title">Список Событий</h3>
+                    <ul class="events__list"></ul>
+                    <p class="events__no-notes">Пока нет событий</p>
+                </div>
+                <div class="events__creator">
+                    <button class="events__creator__newbtn">+ Новое событие</button>
+                    <div class="events__creator__body hidden">
+                        <label for="events__creator__title">Название:</label>
+                        <input id="events__creator__title" type="text" class="events__creator__title" placeholder="Название События">
+                        <label for="events__creator__date">Дата:</label>
+                        <input type="datetime-local" id="events__creator__date" class="events__creator__date">
+                        <div class="events__btns">
+                            <button class="events__save-btn">Сохранить</button>
+                            <button class="events__cancel-btn">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button class="scroll-btn hidden" title="в начало страницы">&#11014;</button>
     </main>
     <div class="modal__container hidden">
         <div class="modal__add hidden">
@@ -187,14 +213,6 @@
         </div>
         <p class="footer__year">2021</p>
     </footer>
-    <!-- <div class="modal__notes-editor">
-        <input type="text" class="notes-editor__title" value="Задача">
-        <textarea cols="30" rows="15" class="notes__editor__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quaerat rem culpa dignissimos accusamus accusantium saepe dicta perspiciatis facere ipsum assumenda non nesciunt placeat sint a modi quae, cupiditate quidem ullam ratione doloremque minus quod enim? Eos vel enim atque? Perspiciatis aut error, veniam deleniti dignissimos incidunt architecto vitae atque quaerat nihil distinctio amet officia est aspernatur asperiores ipsa omnis eius, fugit ullam facilis sunt praesentium at impedit obcaecati. Est aperiam officia recusandae laboriosam veniam repellendus explicabo eius deleniti non, suscipit, placeat sequi praesentium culpa sunt natus nostrum! A eum ullam cupiditate fuga esse cum autem harum! Consectetur, consequatur id?</textarea>
-        <div class="notes-editor__btns">
-            <button class="notes-editor__savebtn">Соранить</button>
-            <button class="notes-editor__cancelbtn">Отменить</button>
-        </div>
-    </div> -->
     <script src="js/index.js"></script>
 </body>
 

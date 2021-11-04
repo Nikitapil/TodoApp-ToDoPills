@@ -14,6 +14,15 @@ const notesList = document.querySelector('.notes__list')
 if (localStorage.getItem("noteList")) {
   notesList.innerHTML = localStorage.getItem("noteList");
 }
+const eventsList = document.querySelector('.events__list')
+if (localStorage.getItem("eventList")) {
+  eventsList.innerHTML = localStorage.getItem("eventList");
+  let eventItems = document.querySelectorAll('.events__list__item')
+  eventItems.forEach ((item)=> {
+    setCountDown (item)
+    let timer = setInterval(() => setCountDown (item), 1000)
+  })
+}
 // модальное окно для добавления элемента
 let addButton = document.querySelector(".todo__addBtn");
 let addModal = document.querySelector(".modal__add");
@@ -340,6 +349,8 @@ notes.addEventListener("click", function (e) {
     notesEditorSave.onclick = function () {
       currentNote.querySelector(".notes__item__title").textContent = notesEditorTitle.value
       currentNote.querySelector(".notes__item__text").textContent = notesEditorText.value
+      notesList.prepend(currentNote)
+      localStorage.setItem("noteList", notesList.innerHTML)
       showModal(modalEditor)
     }
     notesEditorCancel.onclick = function () {
@@ -350,3 +361,82 @@ notes.addEventListener("click", function (e) {
 function toggleHidden(element) {
 element.classList.toggle("hidden")
 }
+// События
+const events = document.querySelector('.events')
+const eventsAddbtn = document.querySelector('.events__creator__newbtn')
+const eventsCreator = document.querySelector('.events__creator__body')
+const dateOptions = {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+events.addEventListener('click', function (e) {
+  let targetEl = e.target;
+  if (targetEl.closest(".events__creator__newbtn") || targetEl.closest(".events__cancel-btn")){
+    toggleHidden(eventsAddbtn) 
+    toggleHidden(eventsCreator)
+  }
+  if (targetEl.closest(".events__save-btn")) {
+    const eventsTitleInput = document.querySelector('.events__creator__title')
+    const eventsDateInput = document.querySelector('.events__creator__date')
+    if (eventsTitleInput.value && eventsDateInput.value) {
+    let newEvent = document.createElement('li')
+    newEvent.classList.add("events__list__item")
+    newEvent.setAttribute('data-date', new Date(eventsDateInput.value))
+    newEvent.innerHTML = `<h3 class="events__item__title">${eventsTitleInput.value}</h3>
+    <p class="events__item__text">${new Date(eventsDateInput.value).toLocaleDateString('ru-RU', dateOptions)}</p>
+    <p class="events__item__countdown"></p>
+    <button class="events__del-btn"></button>`
+    setCountDown (newEvent)
+    let timer = setInterval(() => setCountDown (newEvent), 1000)
+    eventsList.append(newEvent)
+    eventsTitleInput.value = ""
+    eventsDateInput.value = ""
+    toggleHidden(eventsAddbtn) 
+      toggleHidden(eventsCreator)
+      localStorage.setItem('eventList', eventsList.innerHTML)
+    }
+    else {
+      alert('Заполнены не все поля')
+    }
+  }
+  if (targetEl.closest(".events__del-btn")) {
+    targetEl.closest('.events__list__item').remove()
+    localStorage.setItem('eventList', eventsList.innerHTML)
+  }
+})
+function setCountDown (element) {
+  let countDownOutput = element.querySelector('.events__item__countdown')
+  let today = new Date()
+  let endday = new Date (element.dataset.date)
+  
+  today = Math.floor((endday - today) / 1000);
+  let secDown = today % 60;
+  today = Math.floor(today / 60);
+  let minDown = today % 60;
+  today = Math.floor(today / 60);
+  let hDown = today % 24;
+  today = Math.floor(today / 24);
+  countDownOutput.textContent = "До события:  " +
+  today +
+  " Дней " +
+  hDown +
+  " Часов " +
+  minDown +
+  " минут "+
+  secDown +
+  "секунд"
+}
+// кнопка прокрутки
+const scrollbtn = document.querySelector('.scroll-btn')
+document.addEventListener('scroll', function () {
+  const scrollbtn = document.querySelector('.scroll-btn')
+  if (window.pageYOffset > 0) {
+    scrollbtn.classList.remove('hidden')
+    scrollbtn.addEventListener('click', function () {
+      window.scrollTo({
+        top:0,
+        behavior: "smooth"
+      })
+    })
+  }
+  else {
+    scrollbtn.classList.add('hidden')
+  }
+})
