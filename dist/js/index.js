@@ -34,6 +34,8 @@ let addItemBtn = document.querySelector(".modal__add__addbtn");
 let titleInput = document.querySelector(".todo__title__input");
 let descriptionInput = document.querySelector(".todo__comment__input");
 let mainBlock = document.querySelector(".todo__main__content");
+const eventCheckbox = document.querySelector('.modal__add__checkbox-input')
+const todoDateInput = document.querySelector('.modal__add__date')
 addItemBtn.addEventListener("click", addItem);
 function addItem() {
   let todoItem = document.createElement("div");
@@ -52,8 +54,19 @@ function addItem() {
     <p class="todo__item__description">${descriptionInput.value}</p>
     <p class="todo__item__date">${dataContent}</p>
     <button class="item__show"><span>Показать</span></button>`;
+  if (eventCheckbox.checked) {
+    if (titleInput.value && todoDateInput.value) {
+      createNote(titleInput, todoDateInput)
+    }
+    else {
+      alert('Чтобы добавить задачу в событие введите название и выберите дату')
+      return
+    }
+  }
   mainBlock.append(todoItem);
   showModal(addModal);
+  titleInput.value = ""
+  descriptionInput.value =""
   localStorage.setItem("elements", todoContainer.innerHTML);
   counters();
 }
@@ -376,7 +389,8 @@ events.addEventListener('click', function (e) {
     const eventsTitleInput = document.querySelector('.events__creator__title')
     const eventsDateInput = document.querySelector('.events__creator__date')
     if (eventsTitleInput.value && eventsDateInput.value) {
-    let newEvent = document.createElement('li')
+      createNote(eventsTitleInput, eventsDateInput)
+    /* let newEvent = document.createElement('li')
     newEvent.classList.add("events__list__item")
     newEvent.setAttribute('data-date', new Date(eventsDateInput.value))
     newEvent.innerHTML = `<h3 class="events__item__title">${eventsTitleInput.value}</h3>
@@ -390,7 +404,7 @@ events.addEventListener('click', function (e) {
     eventsDateInput.value = ""
     toggleHidden(eventsAddbtn) 
       toggleHidden(eventsCreator)
-      localStorage.setItem('eventList', eventsList.innerHTML)
+      localStorage.setItem('eventList', eventsList.innerHTML) */
     }
     else {
       alert('Заполнены не все поля')
@@ -401,11 +415,29 @@ events.addEventListener('click', function (e) {
     localStorage.setItem('eventList', eventsList.innerHTML)
   }
 })
+function createNote (titleInput, dateInput) {
+
+  let newEvent = document.createElement('li')
+  newEvent.classList.add("events__list__item")
+  newEvent.setAttribute('data-date', new Date(dateInput.value))
+  newEvent.innerHTML = `<h3 class="events__item__title">${titleInput.value}</h3>
+  <p class="events__item__text">${new Date(dateInput.value).toLocaleDateString('ru-RU', dateOptions)}</p>
+  <p class="events__item__countdown"></p>
+  <button class="events__del-btn"></button>`
+  setCountDown (newEvent)
+  let timer = setInterval(() => setCountDown (newEvent), 1000)
+  eventsList.append(newEvent)
+  titleInput.value = ""
+  dateInput.value = ""
+  toggleHidden(eventsAddbtn) 
+    toggleHidden(eventsCreator)
+    localStorage.setItem('eventList', eventsList.innerHTML)
+}
 function setCountDown (element) {
   let countDownOutput = element.querySelector('.events__item__countdown')
   let today = new Date()
   let endday = new Date (element.dataset.date)
-  
+  if (endday>today) {
   today = Math.floor((endday - today) / 1000);
   let secDown = today % 60;
   today = Math.floor(today / 60);
@@ -422,6 +454,11 @@ function setCountDown (element) {
   " минут "+
   secDown +
   "секунд"
+  }
+  else {
+    countDownOutput.textContent = 'Завершено'
+    countDownOutput.style.color = 'red'
+  }
 }
 // кнопка прокрутки
 const scrollbtn = document.querySelector('.scroll-btn')

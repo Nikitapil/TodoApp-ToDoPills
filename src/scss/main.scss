@@ -242,6 +242,36 @@
 .todo__comment__input {
   outline: none;
 }
+.modall__add__toevents {
+display: grid;
+grid-template-columns: auto auto;
+justify-content: center;
+width: 100%;
+margin: 5px 0;
+}
+
+.modal__add__date {
+  margin-bottom: 5px;
+  grid-column: span 2;
+  display: none;
+}
+.modal__add__checkbox-label {
+  margin-right: 8px;
+}
+.modal__add__date-label {
+  display: none;
+}
+
+.modal__add__checkbox-input{
+  align-self: center;
+  cursor: pointer;
+  &:checked ~ .modal__add__date-label, &:checked ~ .modal__add__date  {
+    display: block;
+  }
+}
+.modal__add__date {
+  justify-self: stretch;
+}
 .modal__add__buttons,
 .modal__edit__buttons,
 .modal__delete__buttons {
