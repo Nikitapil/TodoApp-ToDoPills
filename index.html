@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>ToDoPills</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__title">
+            <div class="header__logo"><img src="img/headerlogo.png" alt="ToDo Logo"></div>
+            <h1>ToDoPills</h1>
+        </div>
+        <nav class="header_nav">
+            <ul class="header_nav_list">
+                <li class="header_nav_list_item calc__open">Калькулятор</li>
+                <li class="header_nav_list_item about__btn">О проекте</li>
+                <li class="header_nav_list_item instruction__btn">Инструкция</li>
+            </ul>
+            <button class="burgermenu">
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    <main class="content">
+        <section class="clock">
+            <div class="loader"></div>
+            <p class="time-output"></p>
+            <select class="clock__timezoes">
+                <option value="">Выберите часовой пояс</option>
+            </select>
+        </section>
+        <h2 class="content__header">Списки задач</h2>
+        <div class="todo__tools">
+            <button class="todo__addBtn">+ Добавить</button>
+            <div class="todo__searcher">
+                <input type="text" class="todo__searchInput" id="todo__searchInput" placeholder="Поиск по задачам">
+                <button type="button" class="todo__searchbutton"></button>
+                <label for="todo__searchInput">Введите название задачи</label>
+            </div>
+        </div>
+        <div class="todo__container">
+            <div class="todo__block todo__main">
+                <div class="todo__header">
+                    <h3>Невыполненные</h3>
+                    <p class="todo__counter">1</p>
+                    <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__main__content">
+
+                </div>
+            </div>
+            <div class="todo__block todo__inprogress">
+                <div class="todo__header">
+                    <h3>В процессе</h3>
+                    <p class="todo__counter">2</p>
+                    <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__inprogress__content"></div>
+            </div>
+            <div class="todo__block todo__done">
+                <div class="todo__header">
+                    <h3>Выполненные</h3>
+                    <p class="todo__counter">3</p>
+                    <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__done__content"></div>
+            </div>
+            <div class="todo__block tode__trash">
+                <div class="todo__header">
+                    <h3>Корзина</h3>
+                    <p class="todo__counter">4</p>
+                    <button type="button" class="todo__clear"></button>
+                </div>
+                <div class="todo__content todo__trash__content"></div>
+            </div>
+        </div>
+        <section class="notes">
+            <h2 class="notes__title">Заметки</h2>
+            <div class="notes__container">
+                <div class="notes__content">
+                    <h3 class="notes__content__title">Список заметок</h3>
+                    <ul class="notes__list"></ul>
+                    <p class="notes__no-notes">Пока нет заметок</p>
+                </div>
+                <div class="notes__creator">
+                    <button class="notes__creator__newbtn">+ Новая заметка</button>
+                    <div class="notes__creator__body hidden">
+                        <label for="creator__body__title">Название:</label>
+                        <input type="text" class="creator__body__title" placeholder="Название заметки" id="creator__body__title">
+                        <label for="creator__body__text">Текс заметки:</label>
+                        <textarea cols="30" rows="10" class="creator__body__text" id="creator__body__text"></textarea>
+                        <div class="creator__btns">
+                            <button class="creator__save-btn">Сохранить</button>
+                            <button class="creator__cancel-btn">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="events">
+            <h2 class="events__title">События</h2>
+            <div class="event__container">
+                <div class="events__content">
+                    <h3 class="events__content__title">Список Событий</h3>
+                    <ul class="events__list"></ul>
+                    <p class="events__no-notes">Пока нет событий</p>
+                </div>
+                <div class="events__creator">
+                    <button class="events__creator__newbtn">+ Новое событие</button>
+                    <div class="events__creator__body hidden">
+                        <label for="events__creator__title">Название:</label>
+                        <input id="events__creator__title" type="text" class="events__creator__title" placeholder="Название События">
+                        <label for="events__creator__date">Дата:</label>
+                        <input type="datetime-local" id="events__creator__date" class="events__creator__date">
+                        <div class="events__btns">
+                            <button class="events__save-btn">Сохранить</button>
+                            <button class="events__cancel-btn">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button class="scroll-btn hidden" title="в начало страницы">&#11014;</button>
+    </main>
+    <div class="modal__container hidden">
+        <div class="modal__add hidden">
+            <h2>Добавление задачи</h2>
+            <label for="todo__title">Введите название:</label>
+            <input type="text" name="todo__title" class="todo__title__input" placeholder="Название" id="todo__title">
+            <label for="todo__comment">Введите описание:</label>
+            <textarea name="todo__comment" cols="30" rows="10" class="todo__comment__input" placeholder="Описание" id="todo__comment"></textarea>
+            <div class="modall__add__toevents">
+                <label class="modal__add__checkbox-label" for="modal__add__checkbox">Добавить задачу в события</label>
+                <input type="checkbox" class="modal__add__checkbox-input" id="modal__add__checkbox">
+                <label for="modal__add__date" class="modal__add__date-label"> Дата:</label>
+                <input type="datetime-local" class="modal__add__date" id="modal__add__date">
+            </div>
+            <div class="modal__add__buttons">
+                <button type="button" class="modal__add__addbtn">Добавить</button>
+                <button type="button" class="modal__cancel__addbtn">Отмена</button>
+            </div>
+        </div>
+        <div class="modal__edit hidden">
+            <h2>Заголовок</h2>
+            <p>Текст</p>
+            <div class="modal__edit__buttons">
+                <button type="button" class="modal__edit__editbtn">Редактировать</button>
+                <button type="button" class="modal__cancel__editbtn">Закрыть</button>
+            </div>
+        </div>
+        <div class="modal__delete hidden">
+            <h2>Удалить задачу безвозвратно?</h2>
+            <div class="modal__delete__buttons">
+                <button type="button" class="modal__delete__deletebtn">Удалить</button>
+                <button type="button" class="modal__delete__cancelbtn">Отмена</button>
+            </div>
+        </div>
+        <div class="modal__about hidden">
+            <button class="modal__about__closeBtn">&#10008;</button>
+            <h2>О проекте</h2>
+            <p>Данное приложение является простым универсальным менеджером задач. В нем реализованы такие возможности
+                как добавление задач, перемещение их между блоками состояния выполнения, возможность добавлять и
+                редактировать заметки, создавать события в которых буде отображаться таймер до наступления события.
+                Также есть возможность воспользоваться калькулятором, а время вверху страницы отображается онлайн и есть
+                возможность выбрать любой часовой пояс.
+            </p>
+        </div>
+        <div class="modal__instruction hidden">
+            <button class="modal__instruction__closeBtn">&#10008;</button>
+            <h2>Инструкция</h2>
+            <p class="instruction__text">На данный момент это приложение работает в рамках использования одно браузера. Приложение использует
+                локальное хранилище пользователя. <br><b>Блок задачи</b><br> Для добавления новой задачи необходимо
+                нажать
+                кнопку добавить и
+                ввести название задачи и ее описание.Если хотите добавить задачу в события необходимо отметить
+                соответствующий чекбокс. При отправки задачи в событие обязательно должен быть введен заголовок и и
+                выбрана дата окончания события. <br> Задача автоматически попадет в блок «Невыполненные».<br>Для
+                отображения полного описания задачи необходимо нажать кнопку «Показать». В этом же разделе можно
+                отредактировать задачу, нажав кнопку «Редактировать». Для перемещения задач между блоками можно просто
+                ее перетащить в нужный блок или использовать кнопки навигации внутри задачи. При удалении задачи она
+                сначала попадает в корзину, оттуда уже можно удалить задачу навсегда. Чтобы безвозвратно очистить блок
+                от всех задач необходимо нажать кнопку Удалить <img class="instructions__trashbin" src="img/trashbinwhite.svg" alt="кнопка удалить"> в заголовке блока. <br> <b>Блок Заметки</b><br>
+                Для добавления новой заметки необходимо нажать кнопку «+Новая заметка», ввести название и текст будущей
+                заметки и нажать сохранить. Заметка отобразится в блоке «Список заметок».Для ее редактирования
+                необходимо нажать на саму заметку и откроется редактор. Для удаления необходимо нажать на иконку корзины
+                на заметке. <br> <b>Блок события</b><br> Для добавления нового события необходимо нажать на кнопку «+ Новое
+                событие», ввести название и время совершения события и нажать кнопку «Сохранить». Событие отобразится в
+                блоке «Список событий», в ней будет отображаться таймер до даты, которую вы указали. В случае, если
+                событие завершиться, будет отображаться «Завершено»<br>Калькулятор <br>Для того, чтобы воспользоваться калькулятором, необходимо выбрать его в меню сайта.
+
+            </p>
+        </div>
+        <div class="modal__search hidden">
+            <button class="modal__search__closeBtn">&#10008;</button>
+        </div>
+        <div class="modal__calc hidden">
+            <button class="modal__calc__closeBtn">&#10008;</button>
+            <input type="text" readonly class="calc__input">
+            <p class="calc__output"></p>
+            <div class="calc__buttons">
+                <button class="calc__btn" value="1">1</button>
+                <button class="calc__btn" value="2">2</button>
+                <button class="calc__btn" value="3">3</button>
+                <button class="calc__btn" value="4">4</button>
+                <button class="calc__btn" value="5">5</button>
+                <button class="calc__btn" value="6">6</button>
+                <button class="calc__btn" value="7">7</button>
+                <button class="calc__btn" value="8">8</button>
+                <button class="calc__btn" value="9">9</button>
+                <button class="calc__btn" value="0">0</button>
+                <button class="calc__btn" value=".">.</button>
+                <button class="calc__funcbtn" value="*">*</button>
+                <button class="calc__funcbtn" value="/">/</button>
+                <button class="calc__funcbtn" value="+">+</button>
+                <button class="calc__funcbtn" value="-">-</button>
+                <button class="calc__funcbtn" value="%">%</button>
+                <button class="calc__del">C</button>
+                <button class="calc__delall">CE</button>
+                <button class="calc__ebtn">=</button>
+            </div>
+        </div>
+        <div class="modal__notes-editor hidden">
+            <input type="text" class="notes-editor__title">
+            <textarea cols="30" rows="15" class="notes__editor__text"></textarea>
+            <div class="notes-editor__btns">
+                <button class="notes-editor__savebtn">Соранить</button>
+                <button class="notes-editor__cancelbtn">Отменить</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>ToDoPills&copy;</p>
+        <div class="footer__social">
+            <a href="https://www.instagram.com/" target="_blank" class="footer__instagram"></a>
+            <a href="https://github.com/Nikitapil" target="_blank" class="footer__github"></a>
+            <a href="https://linkedin.com" target="_blank" class="footer__linkedin"></a>
+        </div>
+        <p class="footer__year">2021</p>
+    </footer>
+    <script src="js/index.js" type="text/javascript"></script>
+</body>
+
+</html>
