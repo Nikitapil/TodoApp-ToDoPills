@@ -390,21 +390,6 @@ events.addEventListener('click', function (e) {
     const eventsDateInput = document.querySelector('.events__creator__date')
     if (eventsTitleInput.value && eventsDateInput.value) {
       createNote(eventsTitleInput, eventsDateInput)
-    /* let newEvent = document.createElement('li')
-    newEvent.classList.add("events__list__item")
-    newEvent.setAttribute('data-date', new Date(eventsDateInput.value))
-    newEvent.innerHTML = `<h3 class="events__item__title">${eventsTitleInput.value}</h3>
-    <p class="events__item__text">${new Date(eventsDateInput.value).toLocaleDateString('ru-RU', dateOptions)}</p>
-    <p class="events__item__countdown"></p>
-    <button class="events__del-btn"></button>`
-    setCountDown (newEvent)
-    let timer = setInterval(() => setCountDown (newEvent), 1000)
-    eventsList.append(newEvent)
-    eventsTitleInput.value = ""
-    eventsDateInput.value = ""
-    toggleHidden(eventsAddbtn) 
-      toggleHidden(eventsCreator)
-      localStorage.setItem('eventList', eventsList.innerHTML) */
     }
     else {
       alert('Заполнены не все поля')
@@ -476,4 +461,55 @@ document.addEventListener('scroll', function () {
   else {
     scrollbtn.classList.add('hidden')
   }
+})
+// часы
+const timeSelect = document.querySelector('.clock__timezoes')
+const timeOutput = document.querySelector('.time-output')
+const loader = document.querySelector('.loader')
+async function getTimeZones() {
+  let response = await fetch('https://worldtimeapi.org/api/timezone')
+  if (response.ok) {
+    let timeZones = await response.json()
+    timeZones.map((item)=> {
+      let timeZ = new Option(item, item)
+      timeSelect.append(timeZ)
+    })
+  }
+}
+getTimeZones()
+/* let timeUrl = 'http://worldtimeapi.org/api/Europe/London' */
+async function getTime () {
+  let url = ''
+  if (timeSelect.value) {
+    url = `https://worldtimeapi.org/api/${timeSelect.value}`
+  }
+  else {
+    url = `https://worldtimeapi.org/api/ip`
+  }
+  let response = await fetch(url)
+  if (response.ok) {
+    let timeObj = await response.json()
+    let time = new Date(timeObj.datetime).toLocaleString('ru-Ru',{
+      timeZone: timeObj.timezone,
+      hour: 'numeric', 
+      minute: 'numeric'
+    })
+    timeOutput.textContent = time
+    console.log(time);
+    console.log(timeObj);
+    let refresher = setTimeout(getTime , 30000)
+  }
+  else {
+    timeOutput.textContent = new Date().toLocaleString('ru-Ru',{
+      timeZone: timeObj.timezone,
+      hour: 'numeric', 
+      minute: 'numeric'
+    })
+  }
+  loader.style.display = 'none'
+}
+getTime ()
+timeSelect.addEventListener('change', function(){
+  loader.style.display = 'block'
+  getTime()
 })
