@@ -467,13 +467,18 @@ const timeSelect = document.querySelector('.clock__timezoes')
 const timeOutput = document.querySelector('.time-output')
 const loader = document.querySelector('.loader')
 async function getTimeZones() {
-  let response = await fetch('https://worldtimeapi.org/api/timezone')
+  try {
+    let response = await fetch('https://worldtimeapi.org/api/timezone')
   if (response.ok) {
     let timeZones = await response.json()
     timeZones.map((item)=> {
       let timeZ = new Option(item, item)
       timeSelect.append(timeZ)
     })
+  }
+  }
+  catch (e) {
+    timeSelect.remove()
   }
 }
 getTimeZones()
@@ -486,7 +491,8 @@ async function getTime () {
   else {
     url = `https://worldtimeapi.org/api/ip`
   }
-  let response = await fetch(url)
+  try {
+    let response = await fetch(url)
   if (response.ok) {
     let timeObj = await response.json()
     let time = new Date(timeObj.datetime).toLocaleString('ru-Ru',{
@@ -499,9 +505,9 @@ async function getTime () {
     console.log(timeObj);
     let refresher = setTimeout(getTime , 30000)
   }
-  else {
+  }
+  catch (e) {
     timeOutput.textContent = new Date().toLocaleString('ru-Ru',{
-      timeZone: timeObj.timezone,
       hour: 'numeric', 
       minute: 'numeric'
     })
