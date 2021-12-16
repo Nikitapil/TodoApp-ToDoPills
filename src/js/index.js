@@ -437,7 +437,7 @@ function setCountDown (element) {
   " Часов " +
   minDown +
   " минут "+
-  secDown +
+  secDown + " " +
   "секунд"
   }
   else {
