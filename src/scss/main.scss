@@ -332,7 +332,7 @@ margin: 5px 0;
 .modal__save__editbtn,
 .modal__delete__deletebtn,
 .modal__delete__cancelbtn,
-.creator__save-btn, 
+.creator__save-btn,
 .creator__cancel-btn,
 .notes-editor__savebtn,
 .notes-editor__cancelbtn,
@@ -393,6 +393,7 @@ margin: 5px 0;
   background: none;
   font-size: 28px;
   padding-left: 5px;
+  max-width: 320px;
   &::placeholder {
     font-style: italic;
     color: #30220d69;
@@ -417,7 +418,8 @@ margin: 5px 0;
 
 .modal__calc {
   width: 320px;
-  background-color: #aa9f9f;
+  //background-color: #aa9f9f;
+  background: linear-gradient(to bottom right, rgb(4, 53, 250), rgb(0, 0, 0));
   padding: 7px;
   border-radius: 10px;
   position: relative;
